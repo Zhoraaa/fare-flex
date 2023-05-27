@@ -1,4 +1,6 @@
 <?php
-setcookie('user', null, time(), "/");
-unset($_SESSION['role']);
+
+setcookie("user", $user['id'], time(), "/");
+unset($_COOKIE['user']);
+
 header("location: /");

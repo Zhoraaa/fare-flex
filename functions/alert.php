@@ -1,11 +1,10 @@
 <?php
-if (!empty($_SESSION['result'])) {
-?>
-    <div id="alert">
-        <span><?= $_SESSION['result'] ?></span>
-        <button id="deleter">×</button>
+if (isset($_SESSION['result'])) {
+    ?>
+    <div id="alert" class="pad15 brad15 shadow smooth">
+        <span><?=$_SESSION['result']?></span>
+        <button id="alert-deleter" class="like-circle impact-btn">×</button>
     </div>
-    <script src="../scripts/alert-delete.js"></script>
-<?php
-    unset($_SESSION['result']);
+    <?php
 }
+unset($_SESSION['result']);

@@ -1,24 +1,25 @@
-<nav>
-    <div class="logo"></div>
-    <div class="links">
-        <a href="../<?= $link ?>"><?= $name ?></a>
-        <a href="../<?= $link ?>"><?= $name ?></a>
-        <a href="../<?= $link ?>"><?= $name ?></a>
+<nav class="invert-color">
+    <div>
+        <img src="../img/logo.svg" alt="лого" id="logo">
+    </div>
+    <div>
+        <a href="../">О нас</a>
+        <a href="../menu.php">Меню</a>
+        <a href="../find-us.php">Где нас найти</a>
         <?php
-        session_start();
-        if ($_SESSION['role'] == 1) {
+        if (isset($user) && $user['role'] == 1) {
         ?>
-            <a href="/admin">Админ-панель</a>
+            <a href="../admin/">Админ-панель</a>
         <?php
         }
         ?>
     </div>
-    <div class="authlinks">
+    <div>
         <?php
         if (!isset($_COOKIE['user'])) {
         ?>
-            <a href="../account/signIn.php">Sign in</a>
-            <a href="../account/signUp.php">Sign up</a>
+            <a href="../signIn.php">Sign in</a>
+            <a href="../signUp.php">Sign up</a>
         <?php
         } else {
         ?>
