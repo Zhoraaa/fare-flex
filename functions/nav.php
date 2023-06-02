@@ -3,9 +3,8 @@
         <img src="../img/logo.svg" alt="лого" id="logo">
     </div>
     <div>
-        <a href="../">О нас</a>
-        <a href="../menu.php">Меню</a>
-        <a href="../find-us.php">Где нас найти</a>
+        <a href="../">Главная</a>
+        <a href="../about.php">О нас</a>
         <?php
         if (isset($user) && $user['role'] == 1) {
         ?>
