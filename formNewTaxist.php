@@ -17,7 +17,7 @@ require "./pageBase.php";
         <span>Есть личное авто</span>
       </label>
     </div>
-    <div id="test">
+    <div id="infoCar">
 
     </div>
   </form>
@@ -28,7 +28,7 @@ require "./pageBase.php";
   var haveCar = document.querySelector('#haveCar');
   haveCar.addEventListener('change', () => {
     if (haveCar.checked) {
-      asyncLoad("taxist/ajax-test.html", "test");
+      asyncLoad("taxist/form-car.html", "infoCar");
     } else {
       asyncClear("test");
     }
