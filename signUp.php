@@ -1,7 +1,7 @@
 <?php
 include "./pageBase.php";
 ?>
-<form action="../account/signUpDB.php" class="inner-shadow father-elem tool-form">
+<form action="../account/signUpDB.php" class="inner-shadow father-elem tool">
     <h2>Регистрация</h2>
     <div><input type="text" name="name" placeholder="Имя" required></div>
     <div><input type="text" name="login" placeholder="Логин" required></div>

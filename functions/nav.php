@@ -17,12 +17,12 @@
         <?php
         if (!isset($_COOKIE['user'])) {
         ?>
-            <a href="../signIn.php">Sign in</a>
-            <a href="../signUp.php">Sign up</a>
+            <a href="../signIn.php">Вход</a>
+            <a href="../signUp.php">Регистрация</a>
         <?php
         } else {
         ?>
-            <a href="../account/logOut.php">Log out</a>
+            <a href="../account/logOut.php">Выйти</a>
         <?php
         }
         ?>

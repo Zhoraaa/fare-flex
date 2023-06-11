@@ -11,5 +11,26 @@ require "./pageBase.php";
     <div><input type="text" name="driver" placeholder="XX XX XXXXXX"></div>
     <h3>ПТС</h3>
     <div><input type="text" name="transport" placeholder="XX XX XXXXXX"></div>
+    <div>
+      <label for="haveCar">
+        <input type="checkbox" name="haveCar" id="haveCar">
+        <span>Есть личное авто</span>
+      </label>
+    </div>
+    <div id="test">
+
+    </div>
   </form>
 </main>
+
+<script src="../scripts/ajax.js"></script>
+<script>
+  var haveCar = document.querySelector('#haveCar');
+  haveCar.addEventListener('change', () => {
+    if (haveCar.checked) {
+      asyncLoad("taxist/ajax-test.html", "test");
+    } else {
+      asyncClear("test");
+    }
+  })
+</script>
