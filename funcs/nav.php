@@ -5,9 +5,15 @@
     </div>
     <nav class="flex g10">
       <a href="/">Заказать такси</a>
-      <a href="/">О нас</a>
+      <a href="/about.php">О нас</a>
       <?php 
-      if (isset($user)) {
+      if (isset($user) && $user['role'] == 2) {
+      ?>
+        <a href="/taxistInterface.php">Интерфейс сотрудника</a>
+      <?php
+      } ?>
+      <?php 
+      if (isset($user) && $user['role'] == 1) {
       ?>
         <a href="/admin.php">Админ-панель</a>
       <?php

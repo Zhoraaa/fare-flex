@@ -2,23 +2,18 @@
 
 require_once("./funcs/DBinteraction.php");
 $query = "SELECT 
-`taxists`.`id`,
-`taxists`.`name`,
-`users`.`email`,
-`taxists`.`photo`,
-CONCAT(`cars`.`color`, ' ', `cars`.`name`) AS `car`,
-`cars`.`number` AS `car_number`,
-`car_types`.`name` AS `type`,
-`taxist_status`.`name` AS `status`
+taxists.id, 
+users.name, 
+CONCAT(cars.color, ' ', cars.name) AS car,  
+taxist_status.name AS `status` 
 
-FROM `taxists`
+FROM taxists 
 
-INNER JOIN `users` ON `taxists`.`user` = `users`.`id`
-INNER JOIN `cars` ON `taxists`.`car` = `cars`.`id`
-INNER JOIN `taxist_status` ON `taxists`.`status` = `taxist_status`.`id`
-INNER JOIN `car_types` ON `cars`.`type` = `car_types`.`id`
+INNER JOIN users ON taxists.user = users.id 
+INNER JOIN cars ON taxists.car = cars.id 
+INNER JOIN taxist_status ON taxists.status = taxist_status.id 
 
-ORDER BY `taxists`.`name` ASC";
+ORDER BY users.name ASC";
 $taxists = selectFrom($query, "ALL");
 
 ?>

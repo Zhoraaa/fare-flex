@@ -26,6 +26,14 @@
     transition: all 0.25s ease-out;
 }
 
+.accent::placeholder {
+    color: #ab3edd69;
+}
+
+.accent:hover::placeholder {
+    color: #ffffffa1
+}
+
 .accent:hover {
     color: white;
     background-color: #ab3edd;
@@ -76,7 +84,7 @@
     margin: 10px;
 }
 
-.m10 {
+.m20 {
     margin: 20px;
 }
 

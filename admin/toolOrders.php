@@ -2,7 +2,7 @@
 
 require_once("./funcs/DBinteraction.php");
 $query = "SELECT orders.id,
-taxists.name AS taxist, 
+users.name AS taxist,
 users.email AS client, 
 street_from.name AS `from_street_str`, 
 street_to.name AS `to_street_str`, 

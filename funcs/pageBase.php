@@ -14,7 +14,7 @@ include_once "DBinteraction.php";
     <title>FareFlex</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="often.css">
-    <script src="../js/ajax.js"></script>
+    <script src="../js/classAjax.js"></script>
 </head>
 
 <body>

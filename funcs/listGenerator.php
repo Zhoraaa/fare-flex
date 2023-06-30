@@ -14,7 +14,7 @@ function generateListItem($listItem, $listType)
                     break;
                 case "taxist":
                 ?>
-                    <?= $listItem['name'] ?> (<?= $listItem['email'] ?>)
+                    <?= $listItem['name'] ?> (<?= $listItem['car'] ?>)
             <?php
                     break;
             }

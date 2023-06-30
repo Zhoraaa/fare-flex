@@ -41,6 +41,12 @@ button {
   padding: 15px;
 }
 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 /* #output для ajax */
 #output,
 #alertPlace {
@@ -97,6 +103,7 @@ button {
 #alert>* {
   display: block;
   margin: auto;
+  color: #000;
 }
 
 .delAlert {
@@ -157,7 +164,7 @@ header * {
 header div {
   max-height: 65px;
   max-width: 100px;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 header div>img {

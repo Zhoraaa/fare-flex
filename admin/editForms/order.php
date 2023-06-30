@@ -1,7 +1,7 @@
 <?php
 require_once("./funcs/DBinteraction.php");
 $query = "SELECT orders.id,
-taxists.name AS taxist, 
+users.name AS taxist, 
 users.email AS client, 
 street_from.name AS `from_street_str`, 
 street_to.name AS `to_street_str`, 
@@ -9,6 +9,7 @@ house_from.street AS `from_street`,
 house_to.street AS `to_street`, 
 house_from.house AS `from_house`, 
 house_to.house AS `to_house`,  
+orders.weight,
 statuses.name AS `status`
 
 FROM orders
@@ -31,6 +32,7 @@ $descorder = [
     "Почта клиента",
     "Адрес отправления",
     "Адрес прибытия",
+    "Вес",
     "Статус"
 ];
 
@@ -57,6 +59,15 @@ foreach ($thisorder as $key => $item) {
             <div class="flex g10 mauto toolInfo">
                 <span class="ctrl-r"><?= $descorder[$descorderKey] ?>:</span>
                 <span>ул.<?= $item ?>,<br>д. <?= $thisorder['to_house'] ?></span>
+            </div>
+        <?php
+            $descorderKey++;
+            break;
+        case "weight":
+        ?>
+            <div class="flex g10 mauto toolInfo">
+                <span class="ctrl-r"><?= $descorder[$descorderKey] ?>:</span>
+                <span><?= $item ?> кг</span>
             </div>
         <?php
             $descorderKey++;

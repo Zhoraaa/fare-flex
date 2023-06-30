@@ -5,7 +5,7 @@ require("../funcs/DBinteraction.php");
 $login = $_GET['login'];
 $pass = md5($_GET['password']);
 
-$query = "SELECT * FROM `users` WHERE `login` = '$login' AND `password` = '$pass'";
+$query = "SELECT * FROM `users` WHERE `login` = '$login' OR `email` = '$login' OR `phone` = '$login' AND `password` = '$pass'";
 $user = selectFrom($query, "ONE");
 
 if ($user) {
