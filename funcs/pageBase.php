@@ -2,6 +2,7 @@
 include_once "connect.php";
 include_once "user.php";
 include_once "alert.php";
+include_once "DBinteraction.php";
 ?>
 <!DOCTYPE html>
 <html lang="ru">

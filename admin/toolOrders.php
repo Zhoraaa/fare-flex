@@ -27,7 +27,6 @@ $orders = selectFrom($query, "ALL");
 
 ?>
 <div class="list flex column g10 wcenter">
-    <a href="?tool=orders&edit=order" class="accent ctrl-e brad10">+ Добавить</a>
     <?php
     require("./funcs/listGenerator.php");
     ?>

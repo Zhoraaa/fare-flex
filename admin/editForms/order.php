@@ -21,9 +21,7 @@ INNER JOIN houses AS house_to ON orders.to = house_to.id
 INNER JOIN streets AS street_from ON house_from.street = street_from.id
 INNER JOIN streets AS street_to ON house_to.street = street_to.id
 
-WHERE `orders`.`id` = " . $_GET['id'] . "
-
-ORDER BY `orders`.`id` DESC";
+WHERE `orders`.`id` = " . $_GET['id'];
 $thisorder = selectFrom($query, "ONE");
 ?>
 <h1>Информация об экземпляре</h1>
@@ -75,20 +73,3 @@ foreach ($thisorder as $key => $item) {
     }
 }
 ?>
-<form action="../funcs/changeStatus.php" method="post" class="btns mauto">
-    <input type="text" class="hide" name="order" value="<?= $thisorder['id'] ?>">
-    <select name="status" id="" class="accent">
-        <?php
-        $query = "SELECT * FROM `statuses`";
-        $statuses = selectFrom($query, "ALL");
-
-        foreach ($statuses as $status) {
-            $selected = ($status['name'] == $thisorder['status']) ? "selected" : null;
-        ?>
-            <option value="<?= $status['id'] ?>" <?= $selected ?>><?= $status['name'] ?></option>
-        <?php
-        }
-        ?>
-    </select>
-    <button class="accent">Сохранить</button>
-</form>
