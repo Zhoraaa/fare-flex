@@ -1,5 +1,5 @@
 <?php
-require "./pageBase.php";
+require "./funcs/pageBase.php";
 ?>
 <main>
   <form action="" method="post" enctype="multipart/form-data">

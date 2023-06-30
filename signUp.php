@@ -1,5 +1,5 @@
 <?php
-include "./pageBase.php";
+include "./funcs/pageBase.php";
 ?>
 <form action="../account/signUpDB.php" class="inner-shadow father-elem tool">
     <h2>Регистрация</h2>

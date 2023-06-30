@@ -1,5 +1,5 @@
 <?php
-include "./pageBase.php";
+include "./funcs/pageBase.php";
 ?>
 <main id="find-us">
     <div id="text-info">

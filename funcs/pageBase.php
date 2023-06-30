@@ -1,7 +1,7 @@
 <?php
-include "./functions/connect.php";
-include "./functions/checkUser.php";
-include "./functions/alert.php";
+include_once "connect.php";
+include_once "user.php";
+include_once "alert.php";
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -12,8 +12,10 @@ include "./functions/alert.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FareFlex</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="often.css">
+    <script src="../js/ajax.js"></script>
 </head>
 
 <body>
     <?php
-    include "./functions/nav.php";
+    include_once "nav.php";

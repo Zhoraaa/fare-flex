@@ -1,6 +1,4 @@
 <?php
-
-setcookie("user", $user['id'], time(), "/");
-unset($_COOKIE['user']);
-
-header("location: /");
+setcookie("user", $account['id'], time(), "/");
+header("location: ../index.php");
+?>

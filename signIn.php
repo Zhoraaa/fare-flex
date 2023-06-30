@@ -1,5 +1,5 @@
 <?php
-include "./pageBase.php";
+include "./funcs/pageBase.php";
 ?>
 <form action="../account/signInDB.php" class="inner-shadow father-elem tool pad15">
     <h2>Аутентфикация</h2>

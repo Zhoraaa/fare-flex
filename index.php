@@ -1,2 +1,2 @@
 <?php
-include "./pageBase.php";
+include "./funcs/pageBase.php";

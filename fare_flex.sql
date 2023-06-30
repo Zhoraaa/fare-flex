@@ -33,7 +33,7 @@ CREATE TABLE `cars` (
   `number` text NOT NULL,
   `color` varchar(128) NOT NULL,
   `type` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `cars`
@@ -52,7 +52,7 @@ INSERT INTO `cars` (`id`, `model`, `number`, `color`, `type`) VALUES
 CREATE TABLE `car_types` (
   `id` int NOT NULL,
   `name` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `car_types`
@@ -77,7 +77,7 @@ CREATE TABLE `orders` (
   `grade_taxist` int NOT NULL,
   `grade_client` int NOT NULL,
   `status` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `orders`
@@ -95,7 +95,7 @@ INSERT INTO `orders` (`id`, `taxist`, `client`, `from`, `to`, `grade_taxist`, `g
 CREATE TABLE `roles` (
   `id` int NOT NULL,
   `name` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `roles`
@@ -115,7 +115,7 @@ INSERT INTO `roles` (`id`, `name`) VALUES
 CREATE TABLE `status` (
   `id` int NOT NULL,
   `name` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `status`
@@ -141,7 +141,7 @@ CREATE TABLE `taxists` (
   `passport` bigint NOT NULL,
   `driver_license` bigint NOT NULL,
   `status` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `taxists`
@@ -159,7 +159,7 @@ INSERT INTO `taxists` (`id`, `photo`, `car`, `user`, `passport`, `driver_license
 CREATE TABLE `taxist_status` (
   `id` int NOT NULL,
   `name` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `taxist_status`
@@ -180,10 +180,10 @@ CREATE TABLE `users` (
   `id` int NOT NULL,
   `name` varchar(128) NOT NULL,
   `login` varchar(128) NOT NULL,
-  `email` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `email` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(128) NOT NULL,
   `role` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `users`
