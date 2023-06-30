@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июн 30 2023 г., 11:10
+-- Время создания: Июн 30 2023 г., 12:39
 -- Версия сервера: 5.7.39
 -- Версия PHP: 8.1.9
 
@@ -103,7 +103,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `taxist`, `client`, `from`, `to`, `weight`, `status`) VALUES
-(1, 1, 5, 1, 2, 32, 3);
+(1, 1, 5, 1, 2, 32, 1);
 
 -- --------------------------------------------------------
 
@@ -221,7 +221,7 @@ CREATE TABLE `users` (
   `phone` bigint(11) NOT NULL,
   `email` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role` int(11) NOT NULL
+  `role` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -231,7 +231,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `login`, `name`, `phone`, `email`, `password`, `role`) VALUES
 (4, 'admin', 'Админ', 88005553535, 'admin@admin', 'e020590f0e18cd6053d7ae0e0a507609', 1),
 (5, 'maxim', 'Максим', 88005553536, 'max@max', '0aa77bd190a1be0b87e7591b6bd72d88', 2),
-(6, 'oochBCHbeck', 'Учбучбек', 88005553537, 'oochBCH@beck', 'efe6398127928f1b2e9ef3207fb82663', 3);
+(6, 'oochBCHbeck', 'Учбучбек', 88005553537, 'oochBCH@beck', 'efe6398127928f1b2e9ef3207fb82663', 3),
+(7, 'petya228', 'Пётр', 89962936906, 'arturved07@gmail.com', 'b279115e64cc56438c4cf0e5d5ca1b92', 2);
 
 --
 -- Индексы сохранённых таблиц
@@ -370,7 +371,7 @@ ALTER TABLE `taxist_status`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц

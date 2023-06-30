@@ -9,7 +9,7 @@
       <?php 
       if (isset($user) && $user['role'] == 2) {
       ?>
-        <a href="/taxistInterface.php">Интерфейс сотрудника</a>
+        <a href="/orderInterface.php">Интерфейс сотрудника</a>
       <?php
       } ?>
       <?php 
