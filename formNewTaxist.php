@@ -2,7 +2,7 @@
 require "./funcs/pageBase.php";
 ?>
 <div id="first-content-on-page">
-  <form action="funcs/addNewTaxist.php" method="post" class="inner-shadow brad20 p20 flex column ai-c g10">
+  <form action="funcs/addNewTaxist.php" class="inner-shadow brad20 p20 flex column ai-c g10">
     <h2>Заявка на работу таксистом</h2>
     <h4>Паспорт</h4>
     <div><input class="accent" type="text" name="passport" placeholder="00 00 000000" pattern="\d{2} \d{2} \d{6}"></div>

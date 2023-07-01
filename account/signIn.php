@@ -1,6 +1,6 @@
 <?php
 require("../funcs/session.php");
-require("../funcs/DBinteraction.php");
+require_once("../funcs/DBinteraction.php");
 
 $login = $_GET['login'];
 $pass = md5($_GET['password']);

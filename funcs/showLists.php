@@ -121,8 +121,14 @@
         <div class="list flex column g10 wcenter">
             <h2>Ваши заказы:</h2>
             <?php
-            foreach ($yourOrders as $yourOrder) {
-                generateListItem($yourOrder, "order");
+            if (!empty($yourOrders)) {
+                foreach ($yourOrders as $yourOrder) {
+                    generateListItem($yourOrder, "order");
+                }
+            } else {
+            ?>
+                <p>Вы не сделали ни единого заказа.</p>
+            <?php
             }
             ?>
         </div>
@@ -134,6 +140,7 @@
             userList($user);
             break;
         case 3:
+        case 1:
             userList($user);
             break;
     }

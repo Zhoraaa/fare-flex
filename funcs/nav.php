@@ -8,11 +8,8 @@
     <?php
     include_once("user.php");
     if (isset($user)) {
-      if ($user['role'] == 2 || $user['role'] == 3) {
     ?>
-        <a href="/account/orderInterface.php">Интерфейс заказов</a>
-      <?php
-      } ?>
+      <a href="/account/orderInterface.php">Интерфейс заказов</a>
       <?php
       if ($user['role'] == 1) {
       ?>

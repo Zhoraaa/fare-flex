@@ -14,7 +14,7 @@ if (isset($user)) {
                 ?>
             </div>
         </div>
-<?php
+    <?php
     }
 } else {
     $_SESSION['result'] = "Авторизуйтесь.";

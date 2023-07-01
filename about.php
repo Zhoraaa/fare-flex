@@ -21,7 +21,7 @@ include "./funcs/pageBase.php";
         </div>
     </div>
     <?php 
-    if ($user['role'] == 3) {
+    if (isset($user) && $user['role'] == 3) {
     ?>
     <a href="formNewTaxist.php" style="text-decoration: underline;">Хочу стать таксистом</a>
     <?php } ?>
