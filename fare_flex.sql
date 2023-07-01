@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июл 01 2023 г., 03:34
+-- Время создания: Июл 01 2023 г., 05:26
 -- Версия сервера: 5.7.39
 -- Версия PHP: 8.1.9
 
@@ -42,7 +42,8 @@ CREATE TABLE `cars` (
 
 INSERT INTO `cars` (`id`, `passport`, `name`, `number`, `color`, `type`) VALUES
 (2, '96 56 251235', 'ВАЗ 2501', 'п219ок', 'Жёлтый', 2),
-(3, '96 56 251298', 'Монстр трак', 'п228он', 'Синий', 1);
+(3, '96 56 251298', 'Монстр трак', 'п228он', 'Синий', 1),
+(4, '80 18 790994', 'ГАЗ 2109', 'з231ыг', 'Серый', 1);
 
 -- --------------------------------------------------------
 
@@ -116,10 +117,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `taxist`, `client`, `from`, `to`, `weight`, `time`, `cost`, `status`) VALUES
-(1, 2, 5, 1, 2, 32, '11:00:00', 150, 3),
-(2, 3, 7, 1, 2, 312, '12:30:00', 2771, 1),
-(4, NULL, 4, 5, 2, 32, '12:30:00', 844, 1),
-(5, NULL, 8, 9, 7, 120, '15:20:00', 2850, 1);
+(13, 6, 9, 5, 2, 32, '15:20:00', 3870, 1);
 
 -- --------------------------------------------------------
 
@@ -204,9 +202,7 @@ CREATE TABLE `taxists` (
 --
 
 INSERT INTO `taxists` (`id`, `car`, `user`, `passport`, `driver_license`, `status`) VALUES
-(2, 2, 6, '80 18 790996', '8018790996', 1),
-(3, NULL, 7, '80 18 790995', '80 18 790995', 1),
-(4, NULL, 4, '80 18 790994', '80 18 790994', 2);
+(6, 2, 10, '80 18 790994', '80 18 790994', 1);
 
 -- --------------------------------------------------------
 
@@ -248,11 +244,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `login`, `name`, `phone`, `email`, `password`, `role`) VALUES
-(4, 'admin', 'Админ', 88005553535, 'admin@admin', 'e020590f0e18cd6053d7ae0e0a507609', 1),
-(5, 'maxim', 'Максим', 88005553536, 'max@max', '0aa77bd190a1be0b87e7591b6bd72d88', 2),
-(6, 'oochBCHbeck', 'Учбучбек', 88005553537, 'oochBCH@beck', 'efe6398127928f1b2e9ef3207fb82663', 3),
-(7, 'petya228', 'Пётр', 89962936906, 'arturved07@gmail.com', 'b279115e64cc56438c4cf0e5d5ca1b92', 2),
-(8, 'testAcc', 'Артур', 89962936665, 'a@a', 'efe6398127928f1b2e9ef3207fb82663', 3);
+(9, 'admin1', 'Админ', 88005553535, 'admin@admin', 'e00cf25ad42683b3df678c61f42c6bda', 1),
+(10, 'pavel1', 'Павел', 88005553536, 'pavel@pavel', '53e6074ce8ba130220b13613bedca72b', 3);
 
 --
 -- Индексы сохранённых таблиц
@@ -337,7 +330,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `cars`
 --
 ALTER TABLE `cars`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT для таблицы `car_types`
@@ -355,7 +348,7 @@ ALTER TABLE `houses`
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT для таблицы `roles`
@@ -379,7 +372,7 @@ ALTER TABLE `streets`
 -- AUTO_INCREMENT для таблицы `taxists`
 --
 ALTER TABLE `taxists`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `taxist_status`
@@ -391,7 +384,7 @@ ALTER TABLE `taxist_status`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
