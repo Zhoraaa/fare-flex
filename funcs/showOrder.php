@@ -1,8 +1,16 @@
 <?php
-require_once("./funcs/DBinteraction.php");
+require_once("DBinteraction.php");
 $query = "SELECT orders.id,
-user_taxist.name AS taxist, 
-user_client.name AS client, 
+user_taxist.id AS taxist, 
+user_taxist.name AS taxist_name, 
+user_taxist.email AS taxist_email, 
+user_taxist.phone AS taxist_phone, 
+
+user_client.id AS client, 
+user_client.name AS client_name, 
+user_client.email AS client_email, 
+user_client.phone AS client_phone, 
+
 street_from.name AS `from_street_str`, 
 street_to.name AS `to_street_str`, 
 house_from.street AS `from_street`, 
@@ -31,7 +39,13 @@ $thisOrder = selectFrom($query, "ONE");
 <?php
 $descorder = [
     "Таксист",
+    "Почта таксиста",
+    "Телефон таксиста",
+
     "Клиент",
+    "Почта клиента",
+    "Телефон клиента",
+
     "Адрес отправления",
     "Адрес прибытия",
     "Вес",
@@ -44,6 +58,8 @@ foreach ($thisOrder as $key => $item) {
     $item = ($item) ?? "Требуется таксист";
     switch ($key) {
         case "id":
+        case "taxist":
+        case "client":
         case "from_street":
         case "to_street":
         case "from_house":
@@ -97,3 +113,15 @@ foreach ($thisOrder as $key => $item) {
     }
 }
 ?>
+<div class="btns">
+    <?php
+    if (empty($thisOrder['taxist']) && $thisOrder['status'] == "Новый") {
+    ?>
+        <a href="./acceptOrder.php?id=<?= $thisOrder['id'] ?>" class="accent">Откликнуться</a>
+    <?php } ?>
+    <?php
+    if ($user['id'] == $thisOrder['client'] && $thisOrder['status'] == "Новый") {
+    ?>
+        <a href="./cancelOrder.php?id=<?= $thisOrder['id'] ?>" class="accent">Отменить</a>
+    <?php } ?>
+</div>

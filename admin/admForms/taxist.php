@@ -1,28 +1,25 @@
 <?php
 require_once("./funcs/DBinteraction.php");
-$query = "SELECT 
-taxists.id, 
-users.name, 
-users.email, 
-users.phone, 
-taxists.photo, 
-CONCAT(cars.color, ' ', cars.name) AS car, 
-cars.number AS car_number, car_types.name AS type, 
-taxist_status.name AS `status` 
-
+$query = "SELECT taxists.id, 
+       users.name, 
+       users.email, 
+       users.phone, 
+       CONCAT(cars.color, ' ', cars.name) AS car, 
+       cars.number AS car_number, 
+       car_types.name AS car_type, 
+       taxist_status.name AS `status` 
 FROM taxists 
-
 INNER JOIN users ON taxists.user = users.id 
-INNER JOIN cars ON taxists.car = cars.id 
+LEFT JOIN cars ON taxists.car = cars.id 
 INNER JOIN taxist_status ON taxists.status = taxist_status.id 
-INNER JOIN car_types ON cars.type = car_types.id
+LEFT JOIN car_types ON cars.type = car_types.id
 
 WHERE `taxists`.`id` = " . $_GET['id'];
 $thisTaxist = selectFrom($query, "ONE");
 ?>
-<h1>Информация об экземпляре</h1>
+<h1>Информация о сотруднике</h1>
 <?php
-$descorder = [
+$descTaxist = [
     "Сотрудник",
     "E-mail",
     "Телефон",
@@ -32,38 +29,57 @@ $descorder = [
     "Статус"
 ];
 
-$descorderKey = 0;
+$descTaxistKey = 0;
 foreach ($thisTaxist as $key => $item) {
     switch ($key) {
         case "id":
         case "photo":
             break;
-        case "from_street_str":
+        case "car":
+        case "car_number":
+            case "car_type":
 ?>
             <div class="flex g10 mauto toolInfo">
-                <span class="ctrl-r"><?= $descorder[$descorderKey] ?>:</span>
+                <span class="ctrl-r"><?= $descTaxist[$descTaxistKey] ?>:</span>
+                <span>
+                    <?php
+                    if (isset($thisTaxist['car'])) {
+                        echo $item;
+                    } else {
+                        echo "Требуется авто";
+                    }
+                    ?>
+                </span>
+            </div>
+        <?php
+            $descTaxistKey++;
+            break;
+        case "from_street_str":
+        ?>
+            <div class="flex g10 mauto toolInfo">
+                <span class="ctrl-r"><?= $descTaxist[$descTaxistKey] ?>:</span>
                 <span>ул.<?= $item ?>,<br>д. <?= $thisTaxist['from_house'] ?></span>
             </div>
         <?php
-            $descorderKey++;
+            $descTaxistKey++;
             break;
         case "to_street_str":
         ?>
             <div class="flex g10 mauto toolInfo">
-                <span class="ctrl-r"><?= $descorder[$descorderKey] ?>:</span>
+                <span class="ctrl-r"><?= $descTaxist[$descTaxistKey] ?>:</span>
                 <span>ул.<?= $item ?>,<br>д. <?= $thisTaxist['to_house'] ?></span>
             </div>
         <?php
-            $descorderKey++;
+            $descTaxistKey++;
             break;
         default:
         ?>
             <div class="flex g10 mauto toolInfo">
-                <span class="ctrl-r"><?= $descorder[$descorderKey] ?>:</span>
+                <span class="ctrl-r"><?= $descTaxist[$descTaxistKey] ?>:</span>
                 <span><?= $item ?></span>
             </div>
 <?php
-            $descorderKey++;
+            $descTaxistKey++;
             break;
     }
 }

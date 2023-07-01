@@ -1,10 +1,10 @@
 <div  class="inner-shadow brad20 p20 flex column ai-c g10">
   <h3>ПТС</h3>
-  <div><input class="accent" type="file" name="transport"></div>
+  <div><input required class="accent" type="text" name="transport" placeholder="00 00 000000" pattern="\d{2} \d{2} \d{6}"></div>
   <h3>Модель автомобиля</h3>
-  <div><input class="accent" type="text" name="model" /></div>
+  <div><input required class="accent" type="text" name="model" placeholder="ВАЗ 1337"/></div>
   <h3>Номер автомобиля</h3>
-  <div><input class="accent" type="text" name="number" /></div>
+  <div><input required class="accent" type="text" name="number" placeholder="x000xx"/></div>
   <h3>Цвет автомобиля</h3>
-  <div><input class="accent" type="text" name="color" /></div>
+  <div><input required class="accent" type="text" name="color"  placeholder="Жёлтый"/></div>
 </div>

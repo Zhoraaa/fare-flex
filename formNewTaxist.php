@@ -2,14 +2,12 @@
 require "./funcs/pageBase.php";
 ?>
 <div id="first-content-on-page">
-  <form action="addNewTaxist.php" method="get" enctype="multipart/form-data" class="inner-shadow brad20 p20 flex column ai-c g10">
+  <form action="funcs/addNewTaxist.php" method="post" class="inner-shadow brad20 p20 flex column ai-c g10">
     <h2>Заявка на работу таксистом</h2>
-    <h4>Ваше фото</h4>
-    <div><input class="accent" type="file" name="photo"></div>
     <h4>Паспорт</h4>
-    <div><input class="accent" type="file" name="passport"></div>
+    <div><input class="accent" type="text" name="passport" placeholder="00 00 000000" pattern="\d{2} \d{2} \d{6}"></div>
     <h4>Водительское удостоверение</h4>
-    <div><input class="accent" type="file" name="driver"></div>
+    <div><input class="accent" type="text" name="driver"  placeholder="00 00 000000" pattern="\d{2} \d{2} \d{6}"></div>
     <div id="infoCar">
       <?php include "ajax-sources/form-car.html" ?>
     </div>

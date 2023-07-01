@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июн 30 2023 г., 12:39
+-- Время создания: Июл 01 2023 г., 03:34
 -- Версия сервера: 5.7.39
 -- Версия PHP: 8.1.9
 
@@ -29,9 +29,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cars` (
   `id` int(11) NOT NULL,
-  `name` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `passport` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `number` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `color` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `color` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -39,9 +40,9 @@ CREATE TABLE `cars` (
 -- Дамп данных таблицы `cars`
 --
 
-INSERT INTO `cars` (`id`, `name`, `number`, `color`, `type`) VALUES
-(1, 'Требуется авто', 'Требуется авто', 'Требуется авто', 1),
-(2, 'ВАЗ 2501', 'п219ок', 'Жёлтый', 2);
+INSERT INTO `cars` (`id`, `passport`, `name`, `number`, `color`, `type`) VALUES
+(2, '96 56 251235', 'ВАЗ 2501', 'п219ок', 'Жёлтый', 2),
+(3, '96 56 251298', 'Монстр трак', 'п228он', 'Синий', 1);
 
 -- --------------------------------------------------------
 
@@ -80,7 +81,17 @@ CREATE TABLE `houses` (
 
 INSERT INTO `houses` (`id`, `street`, `house`) VALUES
 (1, 1, 12),
-(2, 2, 1);
+(2, 2, 1),
+(3, 3, 23),
+(4, 1, 16),
+(5, 2, 32),
+(6, 4, 6),
+(7, 5, 2),
+(8, 4, 121),
+(9, 4, 7),
+(10, 1, 54),
+(11, 3, 34),
+(12, 5, 9);
 
 -- --------------------------------------------------------
 
@@ -90,20 +101,25 @@ INSERT INTO `houses` (`id`, `street`, `house`) VALUES
 
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
-  `taxist` int(11) NOT NULL,
+  `taxist` int(11) DEFAULT NULL,
   `client` int(11) NOT NULL,
   `from` int(11) NOT NULL,
   `to` int(11) NOT NULL,
   `weight` int(11) NOT NULL,
-  `status` int(11) NOT NULL
+  `time` time NOT NULL DEFAULT '11:00:00',
+  `cost` int(11) NOT NULL DEFAULT '150',
+  `status` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `orders`
 --
 
-INSERT INTO `orders` (`id`, `taxist`, `client`, `from`, `to`, `weight`, `status`) VALUES
-(1, 1, 5, 1, 2, 32, 1);
+INSERT INTO `orders` (`id`, `taxist`, `client`, `from`, `to`, `weight`, `time`, `cost`, `status`) VALUES
+(1, 2, 5, 1, 2, 32, '11:00:00', 150, 3),
+(2, 3, 7, 1, 2, 312, '12:30:00', 2771, 1),
+(4, NULL, 4, 5, 2, 32, '12:30:00', 844, 1),
+(5, NULL, 8, 9, 7, 120, '15:20:00', 2850, 1);
 
 -- --------------------------------------------------------
 
@@ -143,8 +159,7 @@ CREATE TABLE `statuses` (
 INSERT INTO `statuses` (`id`, `name`) VALUES
 (1, 'Новый'),
 (2, 'В исполнении'),
-(3, 'Завершён'),
-(4, 'Отменён');
+(3, 'Завершён');
 
 -- --------------------------------------------------------
 
@@ -163,7 +178,11 @@ CREATE TABLE `streets` (
 
 INSERT INTO `streets` (`id`, `name`) VALUES
 (1, 'Пушкина'),
-(2, 'Ленина');
+(2, 'Ленина'),
+(3, 'Кушнерук'),
+(4, 'Лебедева'),
+(5, 'Правды'),
+(6, 'Алексеевская');
 
 -- --------------------------------------------------------
 
@@ -173,20 +192,21 @@ INSERT INTO `streets` (`id`, `name`) VALUES
 
 CREATE TABLE `taxists` (
   `id` int(11) NOT NULL,
-  `photo` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `car` int(11) NOT NULL,
+  `car` int(11) DEFAULT NULL,
   `user` int(11) NOT NULL,
   `passport` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
   `driver_license` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` int(11) NOT NULL
+  `status` int(11) NOT NULL DEFAULT '2'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `taxists`
 --
 
-INSERT INTO `taxists` (`id`, `photo`, `car`, `user`, `passport`, `driver_license`, `status`) VALUES
-(1, 'default.jpg', 2, 6, '8018790994', '8018790994', 1);
+INSERT INTO `taxists` (`id`, `car`, `user`, `passport`, `driver_license`, `status`) VALUES
+(2, 2, 6, '80 18 790996', '8018790996', 1),
+(3, NULL, 7, '80 18 790995', '80 18 790995', 1),
+(4, NULL, 4, '80 18 790994', '80 18 790994', 2);
 
 -- --------------------------------------------------------
 
@@ -205,8 +225,7 @@ CREATE TABLE `taxist_status` (
 
 INSERT INTO `taxist_status` (`id`, `name`) VALUES
 (1, 'Работает'),
-(2, 'Ожидает ответа'),
-(3, 'В чёрном списке');
+(2, 'Ожидает ответа');
 
 -- --------------------------------------------------------
 
@@ -218,7 +237,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `login` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` bigint(11) NOT NULL,
+  `phone` bigint(20) NOT NULL,
   `email` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
   `role` int(11) NOT NULL DEFAULT '1'
@@ -232,7 +251,8 @@ INSERT INTO `users` (`id`, `login`, `name`, `phone`, `email`, `password`, `role`
 (4, 'admin', 'Админ', 88005553535, 'admin@admin', 'e020590f0e18cd6053d7ae0e0a507609', 1),
 (5, 'maxim', 'Максим', 88005553536, 'max@max', '0aa77bd190a1be0b87e7591b6bd72d88', 2),
 (6, 'oochBCHbeck', 'Учбучбек', 88005553537, 'oochBCH@beck', 'efe6398127928f1b2e9ef3207fb82663', 3),
-(7, 'petya228', 'Пётр', 89962936906, 'arturved07@gmail.com', 'b279115e64cc56438c4cf0e5d5ca1b92', 2);
+(7, 'petya228', 'Пётр', 89962936906, 'arturved07@gmail.com', 'b279115e64cc56438c4cf0e5d5ca1b92', 2),
+(8, 'testAcc', 'Артур', 89962936665, 'a@a', 'efe6398127928f1b2e9ef3207fb82663', 3);
 
 --
 -- Индексы сохранённых таблиц
@@ -317,7 +337,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `cars`
 --
 ALTER TABLE `cars`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `car_types`
@@ -329,13 +349,13 @@ ALTER TABLE `car_types`
 -- AUTO_INCREMENT для таблицы `houses`
 --
 ALTER TABLE `houses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `roles`
@@ -353,13 +373,13 @@ ALTER TABLE `statuses`
 -- AUTO_INCREMENT для таблицы `streets`
 --
 ALTER TABLE `streets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT для таблицы `taxists`
 --
 ALTER TABLE `taxists`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `taxist_status`
@@ -371,7 +391,7 @@ ALTER TABLE `taxist_status`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц

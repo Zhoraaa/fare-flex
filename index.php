@@ -15,33 +15,34 @@ ORDER BY `street_str` ASC";
 $addresses = selectFrom($query, "ALL");
 ?>
 <div id="first-content-on-page" class="inner-shadow brad20 p20 ">
+    <?php
+    function genOptions($address, $key)
+    {
+        $selected = (isset($_GET[$key]) && $_GET[$key] == $address['id']) ? "selected" : null;
+    ?>
+        <option <?= $selected ?> value="<?= $address['id'] ?>">
+            ул. <?= $address['street_str'] ?>, д. <?= $address['house'] ?>
+        </option>
+    <?php
+    }
+    ?>
     <form action="" class="flex g10 ai-c">
-        <span>Выберите пункт отправления:</span>
+        <span>Пункт отправления:</span>
         <select required name="from" id="" class="accent">
             <option value selected disabed>Выберитe адрес</option>
             <?php
             foreach ($addresses as $address) {
-                $selected = (isset($_GET['from']) && $_GET['from'] == $address['street'] . "+" . $address['house']) ? "selected" : null;
-            ?>
-                <option <?= $selected ?> value="<?= $address['street'] ?>+<?= $address['house'] ?>">
-                    ул. <?= $address['street_str'] ?>, д. <?= $address['house'] ?>
-                </option>
-            <?php
+                genOptions($address, "from");
             }
             ?>
         </select>
 
-        <span>и пункт прибытия:</span>
-        <select required name="to" id="" class="accent">
+        <span>Пункт прибытия:</span>
+        <select required name=" to" id="" class="accent">
             <option value selected disabed>Выберитe адрес</option>
             <?php
             foreach ($addresses as $address) {
-                $selected = (isset($_GET['to']) && $_GET['to'] == $address['street'] . "+" . $address['house']) ? "selected" : null;
-            ?>
-                <option <?= $selected ?> value="<?= $address['street'] ?>+<?= $address['house'] ?>">
-                    ул. <?= $address['street_str'] ?>, д. <?= $address['house'] ?>
-                </option>
-            <?php
+                genOptions($address, "to");
             }
             ?>
         </select>
@@ -49,7 +50,9 @@ $addresses = selectFrom($query, "ALL");
         $weight = ($_GET['weight']) ?? null;
         $time = ($_GET['when']) ?? null;
         ?>
+        <span>Общий вес перевозки</span>
         <input required type="number" name="weight" value="<?= $weight ?>" step="any" min="10" max="700" class="accent" placeholder="Вес перевозки (в кг)">
+        <span>Когда приступать:</span>
         <input type="time" name="when" value="<?= $time ?>" class="accent" list="popular" min="10:20" max="21:00" />
         <datalist id="popular">
             <option value="11:00">11:00</option>
@@ -69,44 +72,7 @@ $addresses = selectFrom($query, "ALL");
             </div>
         <?php
         } else {
-            function getAdress($orderADRS)
-            {
-                $output = null;
-
-                $query = "SELECT `name` FROM `streets` WHERE `id` = " . $orderADRS['0'];
-                $check = selectFrom($query, "ONE");
-                $output .= "ул. " . $check['name'] . ", ";
-
-                $query = "SELECT `house` FROM `houses` WHERE `house` = " . $orderADRS['1'];
-                $check = selectFrom($query, "ONE");
-                $output .= "д. " . $check['house'];
-
-                return $output;
-            }
-
-            $from = getAdress(explode("+", $_GET['from']));
-            $to = getAdress(explode("+", $_GET['to']));
-        ?>
-            <div class="inner-shadow brad20 p20 m20 flex column g10">
-                <h2>
-                    Предпросмотр заказа:
-                    <input type="text" name="from" value="<?= $_GET['from'] ?>" class="hide">
-                    <input type="text" name="to" value="<?= $_GET['to'] ?>" class="hide">
-                    <input type="number" name="weight" value="<?= $weight ?>" class="hide">
-                    <input type="time" name="when" value="<?= $time ?>" class="hide"/>
-                </h2>
-                <span>Пункт отправления: <?= $from ?>.</span>
-                <span>Пункт прибытия: <?= $to ?>.</span>
-                <span>Вес перевозки: <?= $_GET['weight'] ?> кг.</span>
-                <span>Время перевозки: <?= $_GET['when'] ?></span>
-                <div class="btns">
-                    <button class="accent">Подтвердить</button>
-                    <a href="/" class="accent">Отменить</a>
-                </div>
-            </div>
-        <?php }
-
-        if ($_GET['from'] == $_GET['to']) {
+            include("funcs/orderPreview.php");
         }
     } else {
         ?>

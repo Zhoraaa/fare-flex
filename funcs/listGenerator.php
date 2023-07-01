@@ -15,10 +15,16 @@ function generateListItem($listItem, $listType)
                 case "taxist":
                 ?>
                     <?= $listItem['name'] ?> (<?= $listItem['car'] ?>)
+                <?php
+                    break;
+                case "car":
+                ?>
+                    Авто <?= $listItem['name'] ?> (<?= $listItem['number'] ?>)
             <?php
                     break;
             }
             ?>
+
         </span>
         <div class="flex g10">
             <?php
@@ -28,6 +34,9 @@ function generateListItem($listItem, $listType)
                     break;
                 case "taxist":
                     $href = "?tool=taxists&edit=taxist&id=" . $listItem['id'];
+                    break;
+                case "car":
+                    $href = "?tool=cars&edit=car&id=" . $listItem['id'];
                     break;
             }
             ?>

@@ -1,8 +1,8 @@
 <?php
-include_once "connect.php";
-include_once "user.php";
-include_once "alert.php";
-include_once "DBinteraction.php";
+include_once("connect.php");
+include_once("user.php");
+include_once("alert.php");
+include_once("DBinteraction.php");
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -12,8 +12,8 @@ include_once "DBinteraction.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FareFlex</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="often.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../often.css">
     <script src="../js/classAjax.js"></script>
 </head>
 
